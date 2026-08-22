@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import RouteOverlay from './RouteOverlay';
+import Building3D from './Building3D';
 import MapControls from './MapControls';
 import usePanZoom from '../hooks/usePanZoom';
 import { CAMPUS_MAP } from '../config/map';
+import { buildings3D } from '../data/buildings';
 
 const MAP_WIDTH = Number(import.meta.env.VITE_MAP_WIDTH) || 2483;
 const MAP_HEIGHT = Number(import.meta.env.VITE_MAP_HEIGHT) || 1621;
@@ -37,6 +39,7 @@ export default function CampusMap({
   showWaypoints = false,
 }) {
   const [mapLoaded, setMapLoaded] = useState(false);
+  const [selectedBuilding, setSelectedBuilding] = useState(null);
   const { svgRef, transform, isPanning, handlers, zoomIn, zoomOut, reset, fitTo } = usePanZoom({
     width: MAP_WIDTH,
     height: MAP_HEIGHT,
@@ -112,6 +115,15 @@ export default function CampusMap({
             onLoad={() => setMapLoaded(true)}
             onError={() => setMapLoaded(true)}
           />
+
+          {buildings3D.map((building) => (
+            <Building3D
+              key={building.id}
+              {...building}
+              selected={selectedBuilding === building.id}
+              onSelect={setSelectedBuilding}
+            />
+          ))}
 
           {/* ---- Layer 2: the animated route, drawn above the map ---- */}
           <RouteOverlay
