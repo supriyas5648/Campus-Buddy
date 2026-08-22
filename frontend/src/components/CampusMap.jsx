@@ -2,8 +2,8 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import RouteOverlay from './RouteOverlay';
 import MapControls from './MapControls';
 import usePanZoom from '../hooks/usePanZoom';
+import { CAMPUS_MAP } from '../config/map';
 
-const MAP_URL = import.meta.env.VITE_CAMPUS_MAP_URL || '/campus_map.svg';
 const MAP_WIDTH = Number(import.meta.env.VITE_MAP_WIDTH) || 2483;
 const MAP_HEIGHT = Number(import.meta.env.VITE_MAP_HEIGHT) || 1621;
 
@@ -11,7 +11,7 @@ const MAP_HEIGHT = Number(import.meta.env.VITE_MAP_HEIGHT) || 1621;
  * The campus map canvas.
  *
  * A single inline <svg> holds two layers inside one shared <g>:
- *   1. <image> — the campus reference map (`public/campus_map.svg`)
+ *   1. <image> — the campus reference map (`public/campus-map2.svg`)
  *   2. <RouteOverlay> — the animated blue route, always drawn *after* the image
  *      and therefore on top of it.
  *
@@ -103,7 +103,7 @@ export default function CampusMap({
         >
           {/* ---- Layer 1: the campus reference map ---- */}
           <image
-            href={MAP_URL}
+            href={CAMPUS_MAP}
             x="0"
             y="0"
             width={MAP_WIDTH}

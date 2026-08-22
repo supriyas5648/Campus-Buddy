@@ -5,6 +5,7 @@ import { XMLParser } from "fast-xml-parser";
 
 import connectDB from "../config/db.js";
 import Node from "../models/Node.js";
+const { CAMPUS_MAP_FILENAME } = require("../config/map");
 
 dotenv.config();
 
@@ -13,7 +14,7 @@ const parser = new XMLParser({
   attributeNamePrefix: "",
 });
 
-const svgPath = path.join(process.cwd(), "campus_map.svg");
+const svgPath = path.join(process.cwd(), "..", "frontend", "public", CAMPUS_MAP_FILENAME);
 
 const toArray = (item) => {
   if (!item) return [];

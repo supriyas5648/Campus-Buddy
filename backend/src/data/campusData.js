@@ -6,7 +6,7 @@
  * ---------------------------------------------------------------------------
  * This file is the single source of truth for the seed script. Everything here
  * is plain hand-authored data: waypoints traced onto the walkways of
- * `frontend/public/campus_map.svg`, the buildings that hang off those
+ * `frontend/public/campus-map2.svg`, the buildings that hang off those
  * waypoints, and the PREDEFINED routes between them.
  *
  * Coordinates are in the SVG's own coordinate space: viewBox "0 0 2483 1621".
@@ -289,6 +289,6 @@ module.exports = {
   buildings,
   routePaths,
   buildRouteDocuments,
-  /** viewBox of `frontend/public/campus_map.svg` — coordinates are relative to it. */
+  /** viewBox of `frontend/public/campus-map2.svg` — coordinates are relative to it. */
   mapViewBox: { width: 2483, height: 1621 },
 };

@@ -1,0 +1,1 @@
+export const CAMPUS_MAP = '/campus-map2.svg';
