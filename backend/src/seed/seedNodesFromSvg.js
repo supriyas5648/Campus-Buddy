@@ -1,11 +1,10 @@
-import fs from "fs";
-import path from "path";
-import dotenv from "dotenv";
-import { XMLParser } from "fast-xml-parser";
+const fs = require('fs');
+const path = require('path');
+const dotenv = require('dotenv');
+const { XMLParser } = require('fast-xml-parser');
 
-import connectDB from "../config/db.js";
-import Node from "../models/Node.js";
-const { CAMPUS_MAP_FILENAME } = require("../config/map");
+const { connectDatabase: connectDB } = require('../config/db');
+const Node = require('../models/Node');
 
 dotenv.config();
 
@@ -14,7 +13,7 @@ const parser = new XMLParser({
   attributeNamePrefix: "",
 });
 
-const svgPath = path.join(process.cwd(), "..", "frontend", "public", CAMPUS_MAP_FILENAME);
+const svgPath = path.join(process.cwd(), "campus_map.svg");
 
 const toArray = (item) => {
   if (!item) return [];

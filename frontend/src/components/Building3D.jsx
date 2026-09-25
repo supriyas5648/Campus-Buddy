@@ -33,7 +33,7 @@ export default function Building3D({ id, name, footprint, selected = false, onSe
       onPointerLeave={() => setHovered(false)}
       style={{ cursor: 'pointer', opacity: emphasis, transition: 'opacity 280ms ease' }}
     >
-      <g pointerEvents="none">
+      <g>
         {geometry.faces.map((face, index) => (
           <polygon
             key={`${id}-face-${index}`}

@@ -112,6 +112,7 @@ export default function CampusMap({
             width={MAP_WIDTH}
             height={MAP_HEIGHT}
             preserveAspectRatio="xMidYMid meet"
+            pointerEvents="none"
             onLoad={() => setMapLoaded(true)}
             onError={() => setMapLoaded(true)}
           />

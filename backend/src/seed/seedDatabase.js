@@ -106,14 +106,15 @@ async function main() {
   const nodeIndex = new Map(nodes.map((node) => [node.nodeId, node]));
   const routeDocs = buildRouteDocuments();
 
-  // validate(nodeIndex, routeDocs);
+  validate(nodeIndex, routeDocs);
 
   if (FRESH) {
-    logger.warn('--fresh supplied: dropping nodes collection');
-    await Node.collection.drop().catch(ignoreMissingCollection);
-
-    // await Building.collection.drop().catch(ignoreMissingCollection);
-    // await Route.collection.drop().catch(ignoreMissingCollection);
+    logger.warn('--fresh supplied: dropping nodes, buildings and routes collections');
+    await Promise.all([
+      Node.collection.drop().catch(ignoreMissingCollection),
+      Building.collection.drop().catch(ignoreMissingCollection),
+      Route.collection.drop().catch(ignoreMissingCollection),
+    ]);
   }
 
   // ---------------- Nodes ----------------
@@ -131,7 +132,6 @@ async function main() {
   logger.info(`Nodes seeded: ${nodes.length}`);
 
   // ---------------- Buildings ----------------
-  /*
   await Building.bulkWrite(
     buildings.map((building) => ({
       updateOne: {
@@ -144,10 +144,8 @@ async function main() {
   );
 
   logger.info(`Buildings seeded: ${buildings.length}`);
-  */
 
   // ---------------- Routes ----------------
-  /*
   const allRoutes = routeDocs.flatMap((route) => {
     const reversed = [...route.path].reverse();
 
@@ -181,9 +179,10 @@ async function main() {
   logger.info(
     `Routes seeded: ${allRoutes.length} (${routeDocs.length} authored + reverses)`
   );
-  */
 
-  await mongoose.connection.syncIndexes().catch(() => {});
+  await mongoose.connection.syncIndexes().catch(() => {
+    /* index sync is best-effort */
+  });
 
   logger.info('Seed complete.');
 }

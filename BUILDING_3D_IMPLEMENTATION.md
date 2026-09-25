@@ -12,6 +12,7 @@ Enabled buildings are `ayurveda-building`, `H-building`, `I-building`, `Admin-bu
   - Mounts the 3D building layer inside the existing transformed SVG group.
   - Keeps the route overlay above the building layer.
   - Tracks the selected building.
+  - Marks the decorative map image as non-interactive so SVG overlays receive clicks.
 
 - `frontend/src/components/Building3D.jsx`
   - Reusable SVG/React building component.
@@ -21,6 +22,14 @@ Enabled buildings are `ayurveda-building`, `H-building`, `I-building`, `Admin-bu
 - `frontend/src/data/buildings.js`
   - Central building registry.
   - Contains all seven building IDs, display names, and original SVG footprints.
+
+- `backend/src/seed/seedDatabase.js`
+  - Restores seeding for nodes, buildings, and forward/reverse predefined routes.
+  - Re-enables validation of building and route references.
+
+- `backend/src/seed/seedNodesFromSvg.js`
+  - Restores the original node-bearing `campus_map.svg` source.
+  - Uses CommonJS imports, matching the backend runtime.
 
 ## Existing Map Rendering
 
@@ -122,6 +131,14 @@ Because the frontend-served asset does not expose the building paths, the Ayurve
 
 If the served SVG is later updated to include the named building paths, the registry can be changed to load those paths from the asset instead of storing the footprint string.
 
+## Navigation Restoration
+
+The navigation regression was caused by the SVG change in commit `5c1b766`, not by the extrusion geometry. The frontend-served `frontend/public/campus-map2.svg` contains the raster map but no `N1`-style ellipse elements. The standalone `backend/src/seed/seedNodesFromSvg.js` had also been changed to parse that asset, so it could find no nodes.
+
+Navigation uses the existing backend data in `backend/src/data/campusData.js`: 27 nodes, building-to-node mappings, and predefined routes. The active `backend/src/seed/seedDatabase.js` was restored to seed buildings and forward/reverse routes in addition to nodes. The standalone SVG node seeder again reads the original root `campus_map.svg` and is valid for the CommonJS backend.
+
+The 3D map image is now `pointerEvents="none"`. Generated building faces remain interactive, while the route overlay keeps its existing pointer-event behavior. All layers continue to share viewBox `0 0 2483 1621`.
+
 ## Validation
 
 - `npm run build` passes in `frontend/`.
@@ -130,4 +147,7 @@ If the served SVG is later updated to include the named building paths, the regi
 - The app reached its existing login screen without errors from the new component.
 - All seven buildings use the same reusable `Building3D` component and the same extrusion parameters.
 - No building required special geometry handling.
-- Authenticated route, hover, click, resize, and navigation-node testing requires a valid backend session.
+- Live API verification passed after seeding: 27 nodes, 13 buildings, and 156 routes.
+- An authenticated Ayurveda Building to I - Building route returned `N9 -> N11 -> N12`.
+- Browser verification showed all seven building layers, the route overlay, building selection, and zoom control.
+- Full physical drag/resize testing was not automated; the shared SVG transform keeps these layers aligned.
