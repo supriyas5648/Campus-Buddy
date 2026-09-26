@@ -199,6 +199,64 @@ export default function CampusMap({
               </text>
             </g>
           )}
+
+          {/* ---- Indoor map marker on I Building ---- */}
+          {/* I Building footprint: M1022.5 510H758V645H1022.5V510Z  ≈ centre x:890, y:577 */}
+          {/* Marker placed just above the building at (890, 468) */}
+          <g
+            transform={`translate(890 468) scale(${Math.max(0.5, Math.min(2.5, 1 / transform.scale))})`}
+            style={{ cursor: 'pointer' }}
+            role="button"
+            aria-label="Open I Building indoor map"
+            tabIndex={0}
+            onPointerDown={(e) => e.stopPropagation()}
+            onPointerUp={(e) => {
+              e.stopPropagation();
+              onBuildingSelect?.({ id: 'I-building', name: 'I Building' });
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ')
+                onBuildingSelect?.({ id: 'I-building', name: 'I Building' });
+            }}
+          >
+            {/* Outer glow ring */}
+            <circle r="30" fill="rgba(96,165,250,0.15)" stroke="rgba(96,165,250,0.5)" strokeWidth="1.5" />
+            {/* Background circle */}
+            <circle r="22" fill="#06101e" stroke="#3b82f6" strokeWidth="2.5" />
+            {/* Icon */}
+            <text
+              x="0" y="7"
+              textAnchor="middle"
+              fontSize="18"
+              fontFamily="system-ui, sans-serif"
+              style={{ userSelect: 'none', pointerEvents: 'none' }}
+            >
+              🏢
+            </text>
+            {/* Label */}
+            <text
+              x="0" y="42"
+              textAnchor="middle"
+              fontSize="10"
+              fontWeight="800"
+              fontFamily="system-ui, sans-serif"
+              fill="#93c5fd"
+              style={{ userSelect: 'none', pointerEvents: 'none' }}
+            >
+              Indoor
+            </text>
+            {/* Sub-label */}
+            <text
+              x="0" y="56"
+              textAnchor="middle"
+              fontSize="9"
+              fontFamily="system-ui, sans-serif"
+              fill="#bfdbfe"
+              style={{ userSelect: 'none', pointerEvents: 'none' }}
+            >
+              I Building
+            </text>
+          </g>
         </g>
       </svg>
 

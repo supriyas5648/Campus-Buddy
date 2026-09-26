@@ -170,7 +170,10 @@ export default function MapBuddy() {
               loading={loading}
               showWaypoints={showWaypoints}
               onBuildingSelect={(building) => {
-                setIndoorBuilding(building);
+                // Only open indoor nav for I Building
+                if (building?.id === 'I-building') {
+                  setIndoorBuilding(building);
+                }
               }}
               onPanoramaOpen={() => setShowPanorama(true)}
             />
