@@ -147,6 +147,12 @@ export default function BuildingIndoorView({ building, onBack }) {
     svgRoot.style.maxHeight = '620px';
     svgRoot.style.display = 'block';
 
+    // Hide navigation node markers — they are internal routing waypoints,
+    // not meant to be visible on the floor map UI.
+    svgRoot.querySelectorAll('#navigation-nodes, [data-type="navigation-node"]').forEach((el) => {
+      el.style.display = 'none';
+    });
+
     // Remove any existing route overlay layer
     const oldRouteLayer = svgRoot.querySelector('#indoor-route-layer');
     if (oldRouteLayer) {
