@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="827" height="482" viewBox="0 0 827 482" fill="none">
+  <!-- Floor Background -->
+  <rect id="floor-background" width="827" height="482" fill="#F5F5F5"/>
+  <rect id="floor-slab" width="827" height="482" fill="#D9D9D9"/>
+
+  <!-- Walkable Corridor Area Guides (subtle styling) -->
+  <g id="corridors" opacity="0.1">
+    <rect x="220" y="0" width="112" height="482" fill="#FFFFFF"/>
+    <rect x="0" y="205" width="827" height="72" fill="#FFFFFF"/>
+  </g>
+
+  <!-- 3D Classrooms / Buildings -->
+  <g id="rooms" font-family="Arial, Helvetica, sans-serif">
+    <!-- Room I203 (Top-Left) -->
+    <g id="room-I203" data-room="I203" data-floor="2" class="classroom-3d">
+      <rect class="room-shadow" x="0" y="0" width="220" height="205" fill="#4a7a72" opacity="0.35"/>
+      <polygon class="room-face-bottom" points="0,205 220,205 212,197 0,197" fill="#43776e" stroke="#2d544e" stroke-width="1.5" stroke-linejoin="round"/>
+      <polygon class="room-face-right" points="220,0 220,205 212,197 212,0" fill="#538c82" stroke="#2d544e" stroke-width="1.5" stroke-linejoin="round"/>
+      <rect class="room-roof" x="0" y="0" width="212" height="197" fill="#78C3B6" stroke="#2d544e" stroke-width="2"/>
+      <text class="room-label" x="106" y="103" font-size="16" font-weight="bold" fill="#0f172a" text-anchor="middle">I203</text>
+    </g>
+
+    <!-- Room I204 (Top-Right) -->
+    <g id="room-I204" data-room="I204" data-floor="2" class="classroom-3d">
+      <rect class="room-shadow" x="607" y="0" width="220" height="205" fill="#4a7a72" opacity="0.35"/>
+      <polygon class="room-face-bottom" points="607,205 827,205 827,197 615,197" fill="#43776e" stroke="#2d544e" stroke-width="1.5" stroke-linejoin="round"/>
+      <polygon class="room-face-left" points="607,0 607,205 615,197 615,0" fill="#629e93" stroke="#2d544e" stroke-width="1.5" stroke-linejoin="round"/>
+      <rect class="room-roof" x="615" y="0" width="212" height="197" fill="#78C3B6" stroke="#2d544e" stroke-width="2"/>
+      <text class="room-label" x="721" y="103" font-size="16" font-weight="bold" fill="#0f172a" text-anchor="middle">I204</text>
+    </g>
+
+    <!-- Room I202 (Middle-Left) -->
+    <g id="room-I202" data-room="I202" data-floor="2" class="classroom-3d">
+      <rect class="room-shadow" x="0" y="205" width="123" height="152" fill="#4a7a72" opacity="0.35"/>
+      <polygon class="room-face-bottom" points="0,357 123,357 115,349 0,349" fill="#43776e" stroke="#2d544e" stroke-width="1.5" stroke-linejoin="round"/>
+      <polygon class="room-face-right" points="123,205 123,357 115,349 115,205" fill="#538c82" stroke="#2d544e" stroke-width="1.5" stroke-linejoin="round"/>
+      <rect class="room-roof" x="0" y="205" width="115" height="144" fill="#78C3B6" stroke="#2d544e" stroke-width="2"/>
+      <text class="room-label" x="57" y="282" font-size="15" font-weight="bold" fill="#0f172a" text-anchor="middle">I202</text>
+    </g>
+
+    <!-- Room I201 (Bottom-Left) -->
+    <g id="room-I201" data-room="I201" data-floor="2" class="classroom-3d">
+      <rect class="room-shadow" x="0" y="357" width="172" height="125" fill="#4a7a72" opacity="0.35"/>
+      <polygon class="room-face-top" points="0,357 172,357 164,365 0,365" fill="#629e93" stroke="#2d544e" stroke-width="1.5" stroke-linejoin="round"/>
+      <polygon class="room-face-right" points="172,357 172,482 164,482 164,365" fill="#538c82" stroke="#2d544e" stroke-width="1.5" stroke-linejoin="round"/>
+      <rect class="room-roof" x="0" y="365" width="164" height="117" fill="#78C3B6" stroke="#2d544e" stroke-width="2"/>
+      <text class="room-label" x="82" y="428" font-size="16" font-weight="bold" fill="#0f172a" text-anchor="middle">I201</text>
+    </g>
+
+    <!-- Room I205 (Bottom-Right) -->
+    <g id="room-I205" data-room="I205" data-floor="2" class="classroom-3d">
+      <rect class="room-shadow" x="607" y="277" width="220" height="205" fill="#4a7a72" opacity="0.35"/>
+      <polygon class="room-face-top" points="607,277 827,277 827,285 615,285" fill="#629e93" stroke="#2d544e" stroke-width="1.5" stroke-linejoin="round"/>
+      <polygon class="room-face-left" points="607,277 607,482 615,482 615,285" fill="#538c82" stroke="#2d544e" stroke-width="1.5" stroke-linejoin="round"/>
+      <rect class="room-roof" x="615" y="285" width="212" height="197" fill="#78C3B6" stroke="#2d544e" stroke-width="2"/>
+      <text class="room-label" x="721" y="388" font-size="16" font-weight="bold" fill="#0f172a" text-anchor="middle">I205</text>
+    </g>
+  </g>
+
+  <!-- 3D Stairs Block -->
+  <g id="stairs-floor-2" data-type="stairs" data-floor="2" class="stairs-3d">
+    <rect class="stairs-shadow" x="332" y="0" width="214" height="194" fill="#1a2b2b" opacity="0.4"/>
+    <polygon class="stairs-face-bottom" points="332,194 546,194 538,186 332,186" fill="#243b3b" stroke="#162424" stroke-width="1.5" stroke-linejoin="round"/>
+    <polygon class="stairs-face-right" points="546,0 546,194 538,186 538,0" fill="#294242" stroke="#162424" stroke-width="1.5" stroke-linejoin="round"/>
+    <rect class="stairs-roof" x="332" y="0" width="206" height="186" fill="#325050" stroke="#162424" stroke-width="2"/>
+    <text class="stairs-label" x="435" y="98" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#f8fafc" text-anchor="middle">Stairs</text>
+  </g>
+
+  <!-- Navigation Nodes (Floor 2: N020..N026) -->
+  <g id="navigation-nodes" data-floor="2" fill="#000000">
+    <!-- N020: Stair connection node (vertical link to Floor 1 & Floor 3) -->
+    <g id="N020" data-node="N020" data-floor="2" data-type="navigation-node">
+      <circle cx="307" cy="32" r="7"/>
+    </g>
+
+    <!-- N026: Corridor node below stairs -->
+    <g id="N026" data-node="N026" data-floor="2" data-type="navigation-node">
+      <circle cx="300" cy="220" r="7"/>
+    </g>
+
+    <!-- N022: West corridor junction near I203 -->
+    <g id="N022" data-node="N022" data-floor="2" data-type="navigation-node">
+      <circle cx="167" cy="220" r="7"/>
+    </g>
+
+    <!-- N021: West corridor near I202 -->
+    <g id="N021" data-node="N021" data-floor="2" data-type="navigation-node">
+      <circle cx="139" cy="298" r="7"/>
+    </g>
+
+    <!-- N023: West corridor near I201 -->
+    <g id="N023" data-node="N023" data-floor="2" data-type="navigation-node">
+      <circle cx="153" cy="342" r="7"/>
+    </g>
+
+    <!-- N024: East corridor junction near I204 -->
+    <g id="N024" data-node="N024" data-floor="2" data-type="navigation-node">
+      <circle cx="631" cy="215" r="7"/>
+    </g>
+
+    <!-- N025: East corridor near I205 -->
+    <g id="N025" data-node="N025" data-floor="2" data-type="navigation-node">
+      <circle cx="631" cy="265" r="7"/>
+    </g>
+  </g>
+</svg>

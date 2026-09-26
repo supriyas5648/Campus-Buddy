@@ -37,6 +37,8 @@ export default function CampusMap({
   destinationLabel,
   loading = false,
   showWaypoints = false,
+  onBuildingSelect,
+  onPanoramaOpen,
 }) {
   const [mapLoaded, setMapLoaded] = useState(false);
   const [selectedBuilding, setSelectedBuilding] = useState(null);
@@ -122,7 +124,10 @@ export default function CampusMap({
               key={building.id}
               {...building}
               selected={selectedBuilding === building.id}
-              onSelect={setSelectedBuilding}
+              onSelect={(id) => {
+                setSelectedBuilding(id);
+                onBuildingSelect?.(building);
+              }}
             />
           ))}
 
@@ -134,6 +139,66 @@ export default function CampusMap({
             scale={transform.scale}
             showWaypoints={showWaypoints}
           />
+
+          {/* ---- 360° panorama marker near H Building ---- */}
+          {onPanoramaOpen && (
+            <g
+              transform={`translate(752 298) scale(${Math.max(0.5, Math.min(2.5, 1 / transform.scale))})`}
+              style={{ cursor: 'pointer' }}
+              role="button"
+              aria-label="View H Building 360° panorama"
+              tabIndex={0}
+              onPointerDown={(e) => {
+                // Stop the pan-zoom hook from capturing this pointer press
+                e.stopPropagation();
+              }}
+              onPointerUp={(e) => {
+                e.stopPropagation();
+                onPanoramaOpen();
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') onPanoramaOpen();
+              }}
+            >
+              {/* Outer glow ring */}
+              <circle r="30" fill="rgba(251,191,36,0.15)" stroke="rgba(251,191,36,0.5)" strokeWidth="1.5" />
+              {/* Background circle */}
+              <circle r="22" fill="#1c1608" stroke="#f59e0b" strokeWidth="2.5" />
+              {/* Icon — rendered as SVG text; pointerEvents none so hit-test goes to <g> */}
+              <text
+                x="0" y="7"
+                textAnchor="middle"
+                fontSize="18"
+                fontFamily="system-ui, sans-serif"
+                style={{ userSelect: 'none', pointerEvents: 'none' }}
+              >
+                🔭
+              </text>
+              {/* "360°" badge */}
+              <text
+                x="0" y="42"
+                textAnchor="middle"
+                fontSize="12"
+                fontWeight="800"
+                fontFamily="system-ui, sans-serif"
+                fill="#fbbf24"
+                style={{ userSelect: 'none', pointerEvents: 'none' }}
+              >
+                360°
+              </text>
+              {/* Sub-label */}
+              <text
+                x="0" y="56"
+                textAnchor="middle"
+                fontSize="9"
+                fontFamily="system-ui, sans-serif"
+                fill="#fde68a"
+                style={{ userSelect: 'none', pointerEvents: 'none' }}
+              >
+                H Building
+              </text>
+            </g>
+          )}
         </g>
       </svg>
 

@@ -9,6 +9,8 @@ import useBuildings from '../hooks/useBuildings';
 import useNavigationRoute from '../hooks/useNavigationRoute';
 import { useAuth } from '../context/AuthContext';
 import apiClient from '../services/apiClient';
+import BuildingIndoorView from '../components/BuildingIndoorView';
+import PanoramaViewer from '../components/PanoramaViewer';
 
 /**
  * Map Buddy — the campus navigation module.
@@ -22,6 +24,8 @@ export default function MapBuddy() {
   const { route, loading, error, navigate, reset } = useNavigationRoute();
   const { user } = useAuth();
 
+  const [indoorBuilding, setIndoorBuilding] = useState(null);
+  const [showPanorama, setShowPanorama] = useState(false);
   const [start, setStart] = useState('');
   const [nodes, setNodes] = useState([]);
   const [refreshToken, setRefreshToken] = useState(0);
@@ -89,56 +93,99 @@ export default function MapBuddy() {
             <span aria-hidden="true">🔘</span>
             Waypoints
           </button>
+          <button
+            type="button"
+            onClick={() => setIndoorBuilding({ id: 'I-building', name: 'Building I' })}
+            className="chip transition hover:bg-white/10 !border-brand-400/30 text-brand-300"
+          >
+            <span aria-hidden="true">🏢</span>
+            Building I Indoor
+          </button>
         </div>
       </div>
 
-      {/* Layout: control column + map. The map is always on screen. */}
-      <div className="grid gap-5 lg:grid-cols-[minmax(320px,380px)_1fr]">
-        <aside className="space-y-4">
-          <NavigationPanel
-            buildings={buildings}
-            start={start}
-            destination={destination}
-            onStartChange={setStart}
-            onDestinationChange={setDestination}
-            onSwap={onSwap}
-            onNavigate={onNavigate}
-            onReset={onReset}
-            loading={loading}
-            buildingsLoading={buildingsLoading}
-          />
-
-          {buildingsError && (
-            <ErrorCard
-              error={buildingsError}
-              onRetry={reload}
+      {indoorBuilding ? (
+        <BuildingIndoorView
+          building={indoorBuilding}
+          onBack={() => setIndoorBuilding(null)}
+        />
+      ) : (
+        /* Layout: control column + map. The map is always on screen. */
+        <div className="grid gap-5 lg:grid-cols-[minmax(320px,380px)_1fr]">
+          <aside className="space-y-4">
+            <NavigationPanel
+              buildings={buildings}
+              start={start}
+              destination={destination}
+              onStartChange={setStart}
+              onDestinationChange={setDestination}
+              onSwap={onSwap}
+              onNavigate={onNavigate}
+              onReset={onReset}
+              loading={loading}
+              buildingsLoading={buildingsLoading}
             />
-          )}
 
-          {loading && <LoadingCard />}
+            {route?.destination === 'I - Building' && (
+              <div className="glass p-3.5 rounded-2xl border border-brand-400/40 bg-brand-500/10 space-y-2">
+                <p className="text-xs font-semibold text-brand-200">
+                  Destination reached: Building I
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setIndoorBuilding({ id: 'I-building', name: 'Building I' })}
+                  className="btn-primary w-full justify-center text-xs py-2.5 gap-2 shadow-md shadow-brand-500/20"
+                >
+                  🏢 Open Building I Indoor Map →
+                </button>
+              </div>
+            )}
 
-          {!loading && error && (
-            <ErrorCard error={error} onRetry={onNavigate} onDismiss={reset} />
-          )}
+            {buildingsError && (
+              <ErrorCard
+                error={buildingsError}
+                onRetry={reload}
+              />
+            )}
 
-          {!loading && !error && route?.success && <RouteSummary route={route} />}
+            {loading && <LoadingCard />}
 
-          {!loading && !error && !route && !buildingsError && <EmptyState />}
+            {!loading && error && (
+              <ErrorCard error={error} onRetry={onNavigate} onDismiss={reset} />
+            )}
 
-          {user?.role === 'admin' && <ManagementPanel buildings={buildings} nodes={nodes} onRefresh={onRefresh} />}
-        </aside>
+            {!loading && !error && route?.success && <RouteSummary route={route} />}
 
-        {/* Map column — sticky on large screens so it stays in view */}
-        <section className="h-[62vh] min-h-[420px] lg:sticky lg:top-24 lg:h-[calc(100vh-9.5rem)]">
-          <CampusMap
-            path={path}
-            startLabel={route?.start}
-            destinationLabel={route?.destination}
-            loading={loading}
-            showWaypoints={showWaypoints}
-          />
-        </section>
-      </div>
+            {!loading && !error && !route && !buildingsError && <EmptyState />}
+
+            {user?.role === 'admin' && <ManagementPanel buildings={buildings} nodes={nodes} onRefresh={onRefresh} />}
+          </aside>
+
+          {/* Map column — sticky on large screens so it stays in view */}
+          <section className="h-[62vh] min-h-[420px] lg:sticky lg:top-24 lg:h-[calc(100vh-9.5rem)]">
+            <CampusMap
+              path={path}
+              startLabel={route?.start}
+              destinationLabel={route?.destination}
+              loading={loading}
+              showWaypoints={showWaypoints}
+              onBuildingSelect={(building) => {
+                setIndoorBuilding(building);
+              }}
+              onPanoramaOpen={() => setShowPanorama(true)}
+            />
+          </section>
+        </div>
+      )}
+
+      {/* 360° Panorama Viewer — rendered as a fixed full-screen overlay */}
+      {showPanorama && (
+        <PanoramaViewer
+          src="/360-h-building.png"
+          title="H Building · 360° Panorama"
+          onClose={() => setShowPanorama(false)}
+        />
+      )}
     </div>
   );
 }

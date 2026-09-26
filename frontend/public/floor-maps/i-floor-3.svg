@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="827" height="482" viewBox="0 0 827 482" fill="none">
+  <!-- Floor Background -->
+  <rect id="floor-background" width="827" height="482" fill="#F5F5F5"/>
+  <rect id="floor-slab" width="827" height="482" fill="#D9D9D9"/>
+
+  <!-- Walkable Corridor Area Guides (subtle styling) -->
+  <g id="corridors" opacity="0.1">
+    <rect x="220" y="0" width="112" height="482" fill="#FFFFFF"/>
+    <rect x="0" y="205" width="827" height="72" fill="#FFFFFF"/>
+  </g>
+
+  <!-- 3D Classrooms / Buildings -->
+  <g id="rooms" font-family="Arial, Helvetica, sans-serif">
+    <!-- Room I303 (Top-Left) -->
+    <g id="room-I303" data-room="I303" data-floor="3" class="classroom-3d">
+      <rect class="room-shadow" x="0" y="0" width="220" height="205" fill="#4a7a72" opacity="0.35"/>
+      <polygon class="room-face-bottom" points="0,205 220,205 212,197 0,197" fill="#43776e" stroke="#2d544e" stroke-width="1.5" stroke-linejoin="round"/>
+      <polygon class="room-face-right" points="220,0 220,205 212,197 212,0" fill="#538c82" stroke="#2d544e" stroke-width="1.5" stroke-linejoin="round"/>
+      <rect class="room-roof" x="0" y="0" width="212" height="197" fill="#78C3B6" stroke="#2d544e" stroke-width="2"/>
+      <text class="room-label" x="106" y="103" font-size="16" font-weight="bold" fill="#0f172a" text-anchor="middle">I303</text>
+    </g>
+
+    <!-- Room I304 (Top-Right) -->
+    <g id="room-I304" data-room="I304" data-floor="3" class="classroom-3d">
+      <rect class="room-shadow" x="607" y="0" width="220" height="205" fill="#4a7a72" opacity="0.35"/>
+      <polygon class="room-face-bottom" points="607,205 827,205 827,197 615,197" fill="#43776e" stroke="#2d544e" stroke-width="1.5" stroke-linejoin="round"/>
+      <polygon class="room-face-left" points="607,0 607,205 615,197 615,0" fill="#629e93" stroke="#2d544e" stroke-width="1.5" stroke-linejoin="round"/>
+      <rect class="room-roof" x="615" y="0" width="212" height="197" fill="#78C3B6" stroke="#2d544e" stroke-width="2"/>
+      <text class="room-label" x="721" y="103" font-size="16" font-weight="bold" fill="#0f172a" text-anchor="middle">I304</text>
+    </g>
+
+    <!-- Room I302 (Middle-Left) -->
+    <g id="room-I302" data-room="I302" data-floor="3" class="classroom-3d">
+      <rect class="room-shadow" x="0" y="205" width="123" height="152" fill="#4a7a72" opacity="0.35"/>
+      <polygon class="room-face-bottom" points="0,357 123,357 115,349 0,349" fill="#43776e" stroke="#2d544e" stroke-width="1.5" stroke-linejoin="round"/>
+      <polygon class="room-face-right" points="123,205 123,357 115,349 115,205" fill="#538c82" stroke="#2d544e" stroke-width="1.5" stroke-linejoin="round"/>
+      <rect class="room-roof" x="0" y="205" width="115" height="144" fill="#78C3B6" stroke="#2d544e" stroke-width="2"/>
+      <text class="room-label" x="57" y="282" font-size="15" font-weight="bold" fill="#0f172a" text-anchor="middle">I302</text>
+    </g>
+
+    <!-- Room I301 (Bottom-Left) -->
+    <g id="room-I301" data-room="I301" data-floor="3" class="classroom-3d">
+      <rect class="room-shadow" x="0" y="357" width="172" height="125" fill="#4a7a72" opacity="0.35"/>
+      <polygon class="room-face-top" points="0,357 172,357 164,365 0,365" fill="#629e93" stroke="#2d544e" stroke-width="1.5" stroke-linejoin="round"/>
+      <polygon class="room-face-right" points="172,357 172,482 164,482 164,365" fill="#538c82" stroke="#2d544e" stroke-width="1.5" stroke-linejoin="round"/>
+      <rect class="room-roof" x="0" y="365" width="164" height="117" fill="#78C3B6" stroke="#2d544e" stroke-width="2"/>
+      <text class="room-label" x="82" y="428" font-size="16" font-weight="bold" fill="#0f172a" text-anchor="middle">I301</text>
+    </g>
+
+    <!-- Room I305 (Bottom-Right) -->
+    <g id="room-I305" data-room="I305" data-floor="3" class="classroom-3d">
+      <rect class="room-shadow" x="607" y="277" width="220" height="205" fill="#4a7a72" opacity="0.35"/>
+      <polygon class="room-face-top" points="607,277 827,277 827,285 615,285" fill="#629e93" stroke="#2d544e" stroke-width="1.5" stroke-linejoin="round"/>
+      <polygon class="room-face-left" points="607,277 607,482 615,482 615,285" fill="#538c82" stroke="#2d544e" stroke-width="1.5" stroke-linejoin="round"/>
+      <rect class="room-roof" x="615" y="285" width="212" height="197" fill="#78C3B6" stroke="#2d544e" stroke-width="2"/>
+      <text class="room-label" x="721" y="388" font-size="16" font-weight="bold" fill="#0f172a" text-anchor="middle">I305</text>
+    </g>
+  </g>
+
+  <!-- 3D Stairs Block -->
+  <g id="stairs-floor-3" data-type="stairs" data-floor="3" class="stairs-3d">
+    <rect class="stairs-shadow" x="332" y="0" width="214" height="194" fill="#1a2b2b" opacity="0.4"/>
+    <polygon class="stairs-face-bottom" points="332,194 546,194 538,186 332,186" fill="#243b3b" stroke="#162424" stroke-width="1.5" stroke-linejoin="round"/>
+    <polygon class="stairs-face-right" points="546,0 546,194 538,186 538,0" fill="#294242" stroke="#162424" stroke-width="1.5" stroke-linejoin="round"/>
+    <rect class="stairs-roof" x="332" y="0" width="206" height="186" fill="#325050" stroke="#162424" stroke-width="2"/>
+    <text class="stairs-label" x="435" y="98" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#f8fafc" text-anchor="middle">Stairs</text>
+  </g>
+
+  <!-- Navigation Nodes (Floor 3: N030..N036) -->
+  <g id="navigation-nodes" data-floor="3" fill="#000000">
+    <!-- N030: Stair connection node (vertical link from Floor 2) -->
+    <g id="N030" data-node="N030" data-floor="3" data-type="navigation-node">
+      <circle cx="307" cy="32" r="7"/>
+    </g>
+
+    <!-- N036: Corridor node below stairs -->
+    <g id="N036" data-node="N036" data-floor="3" data-type="navigation-node">
+      <circle cx="300" cy="220" r="7"/>
+    </g>
+
+    <!-- N032: West corridor junction near I303 -->
+    <g id="N032" data-node="N032" data-floor="3" data-type="navigation-node">
+      <circle cx="167" cy="220" r="7"/>
+    </g>
+
+    <!-- N031: West corridor near I302 -->
+    <g id="N031" data-node="N031" data-floor="3" data-type="navigation-node">
+      <circle cx="139" cy="298" r="7"/>
+    </g>
+
+    <!-- N033: West corridor near I301 -->
+    <g id="N033" data-node="N033" data-floor="3" data-type="navigation-node">
+      <circle cx="153" cy="342" r="7"/>
+    </g>
+
+    <!-- N034: East corridor junction near I304 -->
+    <g id="N034" data-node="N034" data-floor="3" data-type="navigation-node">
+      <circle cx="631" cy="215" r="7"/>
+    </g>
+
+    <!-- N035: East corridor near I305 -->
+    <g id="N035" data-node="N035" data-floor="3" data-type="navigation-node">
+      <circle cx="631" cy="265" r="7"/>
+    </g>
+  </g>
+</svg>
